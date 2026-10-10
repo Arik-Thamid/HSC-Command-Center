@@ -1,0 +1,36 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root { color-scheme: dark; }
+
+html, body { background: #000; }
+body { color: #e7e9ea; -webkit-font-smoothing: antialiased; }
+
+* { scrollbar-width: thin; scrollbar-color: #3e4144 transparent; }
+
+:focus-visible { outline: 2px solid #ffffff; outline-offset: 2px; }
+
+input[type="date"], input[type="number"], select, textarea, input[type="text"] { color-scheme: dark; }
+
+@media (prefers-reduced-motion: reduce) {
+  * { animation: none !important; transition: none !important; }
+}
+
+@layer components {
+  .field {
+    @apply w-full rounded-lg border border-navy-700 bg-black px-3 py-2 text-sm text-ink-50 placeholder:text-ink-500 focus:border-ink-50 focus:outline-none;
+  }
+  .btn {
+    @apply inline-flex items-center justify-center gap-1.5 rounded-full border border-navy-600 bg-transparent px-4 py-1.5 text-sm font-bold text-ink-50 transition-colors hover:bg-navy-800 disabled:cursor-not-allowed disabled:opacity-50;
+  }
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-1.5 rounded-full bg-ink-50 px-4 py-1.5 text-sm font-bold text-black transition-colors hover:bg-ink-200 disabled:cursor-not-allowed disabled:opacity-50;
+  }
+  .btn-ghost {
+    @apply inline-flex items-center justify-center gap-1.5 rounded-full px-2.5 py-1 text-sm text-ink-300 transition-colors hover:bg-navy-800 hover:text-ink-50;
+  }
+  .card {
+    @apply rounded-2xl border border-navy-700 bg-black;
+  }
+}

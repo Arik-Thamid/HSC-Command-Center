@@ -1,0 +1,20 @@
+import { seedChapters } from "../src/lib/seed";
+import { analyzeLoad, DEFAULT_SETTINGS, generatePlan } from "../src/lib/scheduler";
+import { listDays } from "../src/lib/dates";
+
+const chapters = seedChapters();
+const out = generatePlan({ chapters, keptTasks: [], settings: DEFAULT_SETTINGS, fromDate: DEFAULT_SETTINGS.startDate, today: DEFAULT_SETTINGS.startDate });
+console.log("days:", listDays(DEFAULT_SETTINGS.startDate, DEFAULT_SETTINGS.endDate).length);
+console.log("chapters:", chapters.length, "tasks:", out.tasks.length, "tests:", out.tests.length);
+console.log("verdict:", out.report.verdict, "required h:", out.report.requiredHours, "available h:", out.report.availableHours);
+for (const t of out.report.tracks) console.log(t.label.padEnd(20), "chapters", t.chapters, "need", t.requiredHours, "avail", t.availableHours, "scale", t.scale, "overflow", t.overflowChapters.length);
+const load = analyzeLoad(out.tasks, DEFAULT_SETTINGS);
+const high = load.filter((l) => l.level === "high").length;
+const med = load.filter((l) => l.level === "medium").length;
+console.log("high-risk days:", high, "medium:", med);
+const unscheduled = chapters.filter((c) => !out.chapterDates[c.id]);
+console.log("unscheduled chapters:", unscheduled.map((c) => c.id));
+const lastFinish = Object.values(out.chapterDates).map((d) => d.plannedFinish).sort().pop();
+console.log("last chapter finish:", lastFinish);
+console.log("max day minutes:", Math.max(...load.map((l) => l.plannedMin)), "min:", Math.min(...load.map((l) => l.plannedMin)));
+console.log(load.slice(0, 6).map((l) => `${l.date} ${l.plannedMin} hard ${l.hardMin} ${l.level}`).join("\n"));
