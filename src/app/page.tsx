@@ -63,7 +63,7 @@ export default function Dashboard() {
   return (
     <>
       <PageHeader
-        title="HSC 2027 Command Center"
+        title="HSC Command Center"
         subtitle={fmtLong(today)}
         actions={
           <>

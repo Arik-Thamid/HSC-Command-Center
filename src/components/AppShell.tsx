@@ -57,7 +57,7 @@ export default function AppShell({ children }: { children: ReactNode }) {
       {/* Desktop sidebar */}
       <aside className="fixed inset-y-0 left-0 z-30 hidden w-60 flex-col border-r border-navy-700 bg-navy-950 lg:flex">
         <div className="border-b border-navy-700 px-5 py-4">
-          <div className="text-lg font-bold text-ink-50">HSC 2027</div>
+          <div className="text-lg font-bold text-ink-50">HSC-Science</div>
           <div className="text-xs text-ink-400">Syllabus Command Center</div>
         </div>
         <nav className="flex-1 space-y-0.5 overflow-y-auto px-3 py-3" aria-label="Main">
