@@ -85,7 +85,7 @@ export default function AppShell({ children }: { children: ReactNode }) {
       <header className="sticky top-0 z-30 border-b border-navy-700 bg-black/80 backdrop-blur lg:hidden">
         <div className="flex items-center justify-between px-4 py-3">
           <div>
-            <div className="text-sm font-semibold">HSC 2027 Command Center</div>
+            <div className="text-sm font-semibold">HSC Science</div>
           </div>
           <button className="btn" onClick={() => setMenu((v) => !v)} aria-expanded={menu} aria-controls="mobile-menu">
             {menu ? "Close" : "Menu"}
